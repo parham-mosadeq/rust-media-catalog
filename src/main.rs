@@ -99,4 +99,11 @@ fn main() {
             println!("Nothing Found at your index!!");
         }
     }
+    // ** Getting invalid items
+    match catalog.items.get(100) {
+        Some(value) => println!("Your value is: {:#?} ", value),
+        None => {
+            println!("Nothing Found at your index!!");
+        }
+    }
 }
