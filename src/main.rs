@@ -90,4 +90,13 @@ fn main() {
     catalog.add(placeholder);
     catalog.add(podcast);
     println!("{:#?}", catalog);
+
+    // * Getting a catalog at specific index
+    // ** Getting valid items
+    match catalog.items.get(0) {
+        Some(value) => println!("Your value is: {:#?} ", value),
+        None => {
+            println!("Nothing Found at your index!!");
+        }
+    }
 }
