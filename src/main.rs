@@ -10,5 +10,10 @@ fn print_media(media: Media) {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let book = Media::Book {
+        title: "TestBookTitle".to_string(),
+        author: "testUsers".to_string(),
+    };
+
+    print_media(book);
 }
