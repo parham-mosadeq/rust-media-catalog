@@ -74,6 +74,9 @@ fn main() {
     let audio_book = Media::Audiobook {
         title: String::from("someRandomAudioBook"),
     };
+    // * Usage of unlabeled fields
+    let podcast = Media::Podcast(50);
+    let placeholder = Media::Placeholder;
 
     println!("{}", audio_book.description());
     println!("{}", movie.description());
@@ -84,5 +87,7 @@ fn main() {
     catalog.add(audio_book);
     catalog.add(book);
     catalog.add(movie);
+    catalog.add(placeholder);
+    catalog.add(podcast);
     println!("{:#?}", catalog);
 }
