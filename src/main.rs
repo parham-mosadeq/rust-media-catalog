@@ -64,6 +64,14 @@ impl Catalog {
             MightHaveValue::ThereIsNone
         }
     }
+
+    fn get_by_idx_v2(&self, idx: usize) -> Option<&Media> {
+        if self.items.len() >= idx {
+            Some(&self.items[idx])
+        } else {
+            None
+        }
+    }
 }
 
 enum MightHaveValue<'a> {
@@ -137,5 +145,20 @@ fn main() {
         MightHaveValue::ThereIsNone => {
             println!("NoValueFound");
         }
+    }
+
+    match catalog.get_by_idx_v2(10) {
+        Some(value) => {
+            println!("{:#?}", value)
+        }
+        None => {
+            println!("NoValueFound");
+        }
+    }
+
+    if let Some(value) = catalog.get_by_idx_v2(1) {
+        println!("here is your value:  {:#?}", value)
+    } else {
+        println!("Nothing was found here try again!!!")
     }
 }
