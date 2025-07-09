@@ -5,7 +5,7 @@ enum Media {
     Audiobook { title: String },
 }
 
-fn print_media(media: Media) {
+fn print_media(media: &Media) {
     println!("{:#?}", media);
 }
 
@@ -33,8 +33,24 @@ impl Media {
         }
     }
 }
+#[derive(Debug)]
+struct Catalog {
+    items: Vec<Media>,
+}
+
+impl Catalog {
+    fn new() -> Self {
+        Catalog { items: vec![] }
+    }
+
+    fn add(&mut self, media: Media) {
+        self.items.push(media);
+    }
+}
 
 fn main() {
+    let mut catalog = Catalog::new();
+
     let book = Media::Book {
         title: "TestBookTitle".to_string(),
         author: "testUsers".to_string(),
@@ -52,7 +68,11 @@ fn main() {
     println!("{}", audio_book.description());
     println!("{}", movie.description());
     println!("{}", book.description());
-    print_media(book);
-    print_media(movie);
-    print_media(audio_book);
+    print_media(&book);
+    print_media(&movie);
+    print_media(&audio_book);
+    catalog.add(audio_book);
+    catalog.add(book);
+    catalog.add(movie);
+    println!("{:#?}", catalog);
 }
