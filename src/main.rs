@@ -56,6 +56,19 @@ impl Catalog {
     fn add(&mut self, media: Media) {
         self.items.push(media);
     }
+
+    fn get_by_idx(&self, idx: usize) -> MightHaveValue {
+        if self.items.len() >= idx {
+            MightHaveValue::ThereIsValue(&self.items[idx])
+        } else {
+            MightHaveValue::ThereIsNone
+        }
+    }
+}
+
+enum MightHaveValue<'a> {
+    ThereIsValue(&'a Media),
+    ThereIsNone,
 }
 
 fn main() {
@@ -104,6 +117,25 @@ fn main() {
         Some(value) => println!("Your value is: {:#?} ", value),
         None => {
             println!("Nothing Found at your index!!");
+        }
+    }
+
+    // * Use custom implementation for this
+    match catalog.get_by_idx(10) {
+        MightHaveValue::ThereIsValue(value) => {
+            println!("{:#?}", value)
+        }
+        MightHaveValue::ThereIsNone => {
+            println!("NoValueFound");
+        }
+    }
+
+    match catalog.get_by_idx(3) {
+        MightHaveValue::ThereIsValue(value) => {
+            println!("{:#?}", value)
+        }
+        MightHaveValue::ThereIsNone => {
+            println!("NoValueFound");
         }
     }
 }
