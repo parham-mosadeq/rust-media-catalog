@@ -3,6 +3,9 @@ enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
     Audiobook { title: String },
+    // * Unlabeled fields
+    Podcast(u32),
+    Placeholder,
 }
 
 fn print_media(media: &Media) {
@@ -29,6 +32,13 @@ impl Media {
             }
             Media::Movie { title, director } => {
                 format!("Movie desc is: {title} and {director}")
+            }
+            // * Can use anything (id,number,episode_number...)
+            Media::Podcast(id) => {
+                format!("Podcast desc is: {id} ")
+            }
+            Media::Placeholder => {
+                format!("Placeholder")
             }
         }
     }
